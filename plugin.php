@@ -79,23 +79,7 @@ final class plugin {
 		}
 
 	}
-
-    public function init(): void {
-
-        //add the plugin category for widgets
-         add_action( 'elementor/elements/categories_registered', function($elements_manager){
-            $elements_manager->add_category(
-		    'itays_widgets',
-		    [
-			'title' => esc_html__( "Itay's Widgets", 'itays-elementor' ),
-			'icon' => 'fa fa-plug',
-		]
-	);
-         } );
-
-		 add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
-		
-	}
+	
 
 	/**
 	 * Compatibility Checks
@@ -130,15 +114,46 @@ final class plugin {
 	}
 
 	/**
-	 * Admin notice
+	 * init
 	 *
-	 * Warning when the site doesn't have Elementor installed or activated.
-	 *
-	 * @since 1.0.0
-	 * @access public
-	 */
+	 * If the site is compatible(has elementor), will initialize the modifications of this plugin
+	 *	
+	**/	
+	public function init(): void {
+		
+		$this->modify_elementor();
+
+		 //register widgets:
+		 add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
+		 
+		 //register global and widget styles: 
+		 add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'register_styles' ] );
+		
+	}
 
 
+	public function modify_elementor(){
+		//add the plugin category for widgets
+         add_action( 'elementor/elements/categories_registered', function($elements_manager){
+            $elements_manager->add_category(
+		    'itays_widgets',
+		    [
+			'title' => esc_html__( "Itay's Widgets", 'itays-elementor' ),
+			'icon' => 'fa fa-plug',
+			]
+			);
+         } );
+	}
+
+	public function register_styles(){
+		wp_register_style(
+			'itayswidget-posts_list-style',
+			plugins_url( 'widgets/posts_list/styles.css', __FILE__ )
+		);
+		
+	}
+	
+	
 	/**
 	 * Register Widgets
 	 *

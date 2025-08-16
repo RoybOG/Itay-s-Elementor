@@ -1,9 +1,17 @@
 ul.itay_post_list {
     display: flex;
-    flex-direction: column;
     list-style: none;
-
+    flex-wrap: wrap;
 }
+
+ul.itay_post_list.align_list {
+    flex-direction: column;
+}
+
+ul.itay_post_list.align_grid {
+    flex-direction: row;
+}
+
 
 ul.itay_post_list > li {
     padding: 10px;

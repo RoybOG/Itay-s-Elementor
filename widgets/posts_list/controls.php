@@ -1,5 +1,6 @@
 <?php
 
+
 const SIZE_UNITS = [
     'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 	'range' => [
@@ -103,6 +104,8 @@ $categories = get_categories( array(
 			] + SIZE_UNITS
 		);
 
+		
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -124,6 +127,29 @@ $categories = get_categories( array(
 				],
 			] + SIZE_UNITS
 		);
+
+		$this->add_control(
+			'alignment',
+			[
+				'label' => esc_html__( 'Alignment', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					'align_list' => [
+						'title' => esc_html__( 'List', 'textdomain' ),
+						'icon' => 'eicon-post-list',
+					],
+					'align_grid' => [
+						'title' => esc_html__( 'Grid', 'textdomain' ),
+						'icon' => 'eicon-posts-grid',
+					],
+					
+				],
+				'default' => 'list',
+				'toggle' => true,
+				 
+			]
+		);
+
 		$this->end_controls_section();
 
         

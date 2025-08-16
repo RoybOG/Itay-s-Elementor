@@ -25,7 +25,7 @@ class PostsList extends \Elementor\Widget_Base {
 	}
 
 	public function get_style_depends(): array {
-		return [ 'itayswidget-posts_list-style' ];
+		return [ 'itayswidget-posts_list-style','itayswidget-style' ];
 	}
 
 //define controls of widget
@@ -43,7 +43,7 @@ class PostsList extends \Elementor\Widget_Base {
         
         $args = array(
 	    'numberposts'	=> 20,
-	    // 'category'		=> 4
+	    
         );
         
         if ( $settings['show_categories'] ) {
@@ -54,7 +54,7 @@ class PostsList extends \Elementor\Widget_Base {
         $my_posts = get_posts( $args );
 
         if( ! empty( $my_posts ) ){
-            echo '<ul class="itay_post_list">';
+            echo '<ul class="itay_post_list itay_widget '.$settings['alignment'].'">';
 	        foreach ( $my_posts as $p ){
 		        echo '<li><article><a class="post_title" href="' . esc_url(get_permalink( $p->ID )) . '">' 
 		        . esc_html__($p->post_title, 'itays-elementor' ) . '</a>';
@@ -81,9 +81,5 @@ class PostsList extends \Elementor\Widget_Base {
 		
 	}
 
-	protected function content_template(): void {
-		?>
-		<p> Hello World </p>
-		<?php
-	}
+	
 }

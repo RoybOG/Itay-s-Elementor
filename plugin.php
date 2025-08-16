@@ -8,6 +8,8 @@ namespace itays_elementor_core;
  * @since 1.0.0
  */
 
+define('ITAY_FANCY_SVG_PADDING', 10);
+
 final class plugin {
 
 	/**
@@ -128,6 +130,12 @@ final class plugin {
 		 
 		 //register global and widget styles: 
 		 add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'register_styles' ] );
+
+		  // Register scripts for frontend
+    add_action( 'elementor/frontend/after_enqueue_scripts', [ $this, 'register_scripts' ] );
+
+    // Register scripts for editor
+    add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'register_scripts' ] );
 		
 	}
 
@@ -146,11 +154,40 @@ final class plugin {
 	}
 
 	public function register_styles(){
+		
+		wp_register_style(
+			'itayswidget-style',
+			plugins_url( 'global/pluginStyles.css', __FILE__ )
+		);
+		
 		wp_register_style(
 			'itayswidget-posts_list-style',
 			plugins_url( 'widgets/posts_list/styles.css', __FILE__ )
 		);
+		wp_register_style(
+			'itayswidget-table-style',
+			plugins_url( 'widgets/ElementorTable/styles.css', __FILE__ )
+		);
+		wp_register_style(
+			'itayswidget-fancyTable-style',
+			plugins_url( 'widgets/FancyTable/styles.css', __FILE__ )
+		);
 		
+		
+	
+	}
+
+	public function register_scripts(){
+		wp_register_script( 'widget-script-fancyWidgetsScript', plugins_url( 'global/fancyWidgetsScript.js', __FILE__ ) );
+
+		wp_localize_script(
+        'widget-script-fancyWidgetsScript',
+        'ItayFancySVGSettings',
+        [
+            'padding' => ITAY_FANCY_SVG_PADDING,
+        ]
+    );
+	
 	}
 	
 	
@@ -166,8 +203,14 @@ final class plugin {
 	public function register_widgets( $widgets_manager ): void {
 
 		 require_once( __DIR__ . '/widgets/posts_list/index.php' );
+		 require_once( __DIR__ . '/widgets/ElementorTable/index.php' );
+		 require_once( __DIR__ . '/widgets/FancyTable/index.php' );
         
 		$widgets_manager->register( new \itays_elementor_core\widgets\PostsList() );
+		$widgets_manager->register( new \itays_elementor_core\widgets\ElementorTable() );
+		$widgets_manager->register( new \itays_elementor_core\widgets\FancyTable() );
+
+		
         
 		// $widgets_manager->register( new Widget_2() );
 

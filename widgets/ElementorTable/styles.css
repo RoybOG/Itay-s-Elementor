@@ -1,0 +1,10 @@
+table.itay_table, table.itay_table th,  table.itay_table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 5px;
+  background-color: white;
+}
+
+table.itay_table td,table.itay_table tr{
+    height: 1em;
+}

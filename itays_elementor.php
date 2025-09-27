@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'plugins_loaded', function (){
     // Load plugin file
     require_once( __DIR__ . '/plugin.php' );
+	require_once(__DIR__ . '/global/constants.php');
+	require_once(__DIR__ . '/global/utils.php');
 
 	// Run the plugin
 	\itays_elementor_core\plugin::instance(); } 

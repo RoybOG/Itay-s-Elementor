@@ -99,7 +99,7 @@ $categories = get_categories( array(
 					'size' => 150,
 			],
 		    'selectors' => [
-    			'{{WRAPPER}} ul.itay_post_list .post_start' => 'max-height: {{SIZE}}{{UNIT}}',
+    			'{{WRAPPER}} #circular-container' => '--orbitRadius: {{SIZE}}{{UNIT}}',
 		    ]
 			] + SIZE_UNITS
 		);

@@ -1,0 +1,22 @@
+.circular-container {
+  /* border: black 1px solid; */
+
+  position: relative;
+  margin-inline: auto;
+  width: 300px;
+  height: auto;
+  aspect-ratio: 1;
+
+  /* --orbitRadius: 300px; */
+}
+.circular-container img {
+  height: 100px;
+  aspect-ratio: 1;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.circular-container img.center {
+  top: 50%;
+  left: 50%;
+}

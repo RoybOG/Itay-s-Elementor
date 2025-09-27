@@ -172,6 +172,11 @@ final class plugin {
 			'itayswidget-fancyTable-style',
 			plugins_url( 'widgets/FancyTable/styles.css', __FILE__ )
 		);
+
+		wp_register_style(
+			'itayswidget-Orbit-style',
+			plugins_url( 'widgets/Orbit/styles.css', __FILE__ )
+		);
 		
 		
 	
@@ -205,10 +210,12 @@ final class plugin {
 		 require_once( __DIR__ . '/widgets/posts_list/index.php' );
 		 require_once( __DIR__ . '/widgets/ElementorTable/index.php' );
 		 require_once( __DIR__ . '/widgets/FancyTable/index.php' );
+		  require_once( __DIR__ . '/widgets/Orbit/index.php' );
         
 		$widgets_manager->register( new \itays_elementor_core\widgets\PostsList() );
 		$widgets_manager->register( new \itays_elementor_core\widgets\ElementorTable() );
 		$widgets_manager->register( new \itays_elementor_core\widgets\FancyTable() );
+		$widgets_manager->register( new \itays_elementor_core\widgets\Orbit() );
 
 		
         

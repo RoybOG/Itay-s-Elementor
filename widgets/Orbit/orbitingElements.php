@@ -14,6 +14,8 @@
             aspect-ratio: 1;
             position: absolute;
             transform: translate(-50%,-50%);
+            top:0px;
+            left:0px;
         }
 
         img#center {

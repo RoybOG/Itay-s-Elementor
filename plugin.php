@@ -185,6 +185,8 @@ final class plugin {
 	public function register_scripts(){
 		wp_register_script( 'widget-script-fancyWidgetsScript', plugins_url( 'global/fancyWidgetsScript.js', __FILE__ ) );
 
+		wp_register_script( 'widget-script-orbitRotationScript', plugins_url( 'widgets/Orbit/orbitRotation.js', __FILE__ ) );
+
 		wp_localize_script(
         'widget-script-fancyWidgetsScript',
         'ItayFancySVGSettings',

@@ -3,6 +3,62 @@ use const itays_elementor_core\SIZE_UNITS;
 use function itays_elementor_core\getRandomFileFromFolder;
 
 
+
+
+$this->start_controls_section(
+			'orbitSettings',
+		    [
+				'label' => esc_html__( 'Orbit Settings', 'itays-elementor' ),
+				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+			]
+		);
+
+$this->add_control(
+			'radius',
+			[
+				'label' => esc_html__( 'radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+               
+            'default' => [
+					'unit' => 'px',
+					'size' => 300,
+			],
+		    'selectors' => [
+    			'{{WRAPPER}} .circular-container' => 
+                '--orbitRadius: {{SIZE}}{{UNIT}}; width: calc(var(--orbitRadius) * 2 + {{orbitingElementsSize.SIZE}}{{orbitingElementsSize.UNIT}});',
+		    ]
+			] + SIZE_UNITS
+		);
+
+$this->add_control(
+			'rotationAnimation',
+			[
+				'label' => esc_html__( 'Rotation Animation', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::CHOOSE,
+				'options' => [
+					
+					'turnRight' => [
+						'title' => esc_html__( 'Turn Right', 'textdomain' ),
+						'icon' => 'eicon-redo',
+					],
+					'none' => [
+						'title' => esc_html__( 'None', 'textdomain' ),
+						'icon' => 'eicon-circle-o',
+					],
+					
+					'turnLeft' => [
+						'title' => esc_html__( 'Turn Left', 'textdomain' ),
+						'icon' => 'eicon-undo',
+					],
+				],
+				'default' => 'none',
+				'toggle' => true,
+				
+			]
+		);
+
+$this->end_controls_section();
+
 $this->start_controls_section(
 			'orbitingElements',
 		    [
@@ -34,26 +90,14 @@ $this->start_controls_section(
                     
                     ]
                                 ],
+				'default' => [
+					['elementName'=>'Star'],
+				],
 				'title_field' => '{{{ elementName }}}',
 			]
 		);
 
-        $this->add_control(
-			'radius',
-			[
-				'label' => esc_html__( 'radius', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::SLIDER,
-               
-            'default' => [
-					'unit' => 'px',
-					'size' => 300,
-			],
-		    'selectors' => [
-    			'{{WRAPPER}} .circular-container' => 
-                '--orbitRadius: {{SIZE}}{{UNIT}}; width: calc(var(--orbitRadius) * 2 + {{orbitingElementsSize.SIZE}}{{orbitingElementsSize.UNIT}});',
-		    ]
-			] + SIZE_UNITS
-		);
+        
 
         $this->add_control(
 			'orbitingElementsSize',
@@ -84,6 +128,31 @@ $this->start_controls_section(
                     ]
                                 );
 
+		// $this->add_control(
+        //     'orbitingAngleOffset',
+        //      [
+				    
+		// 			'label' => esc_html__( 'Angle Offset', 'textdomain' ),
+		// 		    	'type' => \Elementor\Controls_Manager::SLIDER,
+        //     'size_units' => [ 'degrees']//, 'radians' ]
+		// 		,'range' => [
+		// 			'degrees' => [
+		// 				'min' => 0,
+		// 				'max' => 360,
+		// 				'step' => 1,
+		// 			],
+		// 			// 'radians' => [
+		// 			// 	'min' => 0,
+		// 			// 	'max' => 2*pi(),
+		// 			// ],
+		// 		],   
+        //     'default' => [
+		// 			'unit' => 'degrees',
+		// 			'size' => 0,
+		// 	],
+
+		// 	]
+		// );
 $this->end_controls_section();
 
 
